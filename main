@@ -1,0 +1,132 @@
+#Dev_@ladinh production
+import random
+import os
+
+def play_again():
+    answer = input("\nDo you want to run the game again? (yes or no): ").lower()
+    return answer == "yes"
+
+def get_name_input(prompt):
+    while True:
+        name = input(prompt).lower()
+        if name:
+            return name
+        print("\nError! You must enter a name. Try again.")
+
+def validate_name(name):
+    player_names = ["kevo", "brayo", "dax", "mark", "stano", "samson", "mercy", "lucy", "vee", "sharon", "shee", "susan"]
+    if name in player_names:
+        print(f"Oops! {name} seems to be a player's name. Be cautious.")
+        return True
+    return False
+
+def get_gender_input():
+    while True:
+        gender = input("\nWhat is your gender? (male or female): ").lower()
+        if gender in ["male", "female"]:
+            return gender
+        print("You need to enter either 'male' or 'female'. Try again.")
+
+def get_duration_input():
+    while True:
+        try:
+            duration = int(input("\nHow long have you been single (in years)? "))
+            if duration >= 0:
+                return duration
+            print("Duration must be a non-negative number. Try again.")
+        except ValueError:
+            print("Invalid input! Enter a valid number.")
+
+def handle_single(gender, duration):
+    if duration <= 1:
+        reason = input(f"\nOops! Sorry {gender}, you seem to have been heartbroken recently. What was the core cause of your break-up? -> ")
+        print(f"\nThat was touchy, all will be fine. Remember, we don't force relationships.")
+    elif duration <= 3:
+        print("\nCongratulations! For that period, you've been in zero-dock quarantine. It seems things didn't go as expected with your partner. All will be fine.")
+    elif duration > 3:
+        print("\nHey, I'm sorry, but it seems you can't heal from your previous relationship.")
+    else:
+        print("\nOops! You have to enter the duration you have been single.")
+
+def handle_married(gender):
+    if gender == "female":
+        print("\nYou are not needed here. This platform is for singles. May you find lightening as you cheat.")
+    elif gender == "male":
+        print("\nYou are right and free to go because you were permitted to do so by GOD.")
+    else:
+        print("\nWe don't deal with any form of homosexuality here. You either be a man or a woman.")
+
+def ownership():
+    # TODO: Add logic for ownership
+    pass
+
+def kids():
+    kids_number = input("\nHow many kids do you have?\nAns-> ")
+    
+    if kids_number == "1":
+        gender = get_gender_input()
+        kid_name = get_name_input(f"\nWhat's the name of your little {'king' if gender == 'male' else 'princess'}?\nAns-> ")
+        
+        if validate_name(kid_name):
+            action = ownership()
+            
+        else:
+            print(f"\nOh!!, {kid_name} is a nice name, and I wish {'him' if gender == 'male' else 'her'} the best in {'his' if gender == 'male' else 'her'} life.")
+            action = ownership()
+
+    elif kids_number.isdigit() and int(kids_number) >= 2:
+        boys = int(input("\nHow many male kids do you have?\nAns-> "))
+        girls = int(input("\nHow many female kids do you have?\nAns-> "))
+        
+        if boys >= 0 and girls >= 0:
+            print(f"\nHurray!! {boys} boys and {girls} girls are a great achievement in life. Hope that you will get a partner who will take good care of you plus your beautiful little angels.")
+            action = ownership()
+        else:
+            print("You have to enter non-negative numbers for the number of kids. Try again.")
+            action = play_again()
+
+    else:
+        print("All is cool. That's amazing for the start; I hope all will be cool.")
+        action = ownership()
+
+def single():
+    gender = get_gender_input()
+    duration = get_duration_input()
+    handle_single(gender, duration)
+    action = kids()
+
+def married():
+    gender = get_gender_input()
+    handle_married(gender)
+    action = kids()
+
+def status():
+    print("\nWhat's your relationship status? {single or married}")
+    answer = input("Ans-> ").lower()
+    
+    if answer == "single":
+        action = single()
+    elif answer == "married":
+        action = married()
+    else:
+        print("\nError!! Status is required\n")
+        action = welcome_screen()
+
+def welcome_screen():
+    print("\n***Welcome To The Relationship Validator Programme***")
+    print("        Enjoy yourself and make yourself cool\n")
+    
+    print("Enter your identity details.")
+    first_name = get_name_input("First name: ")
+    last_name = get_name_input("Last name: ")
+    
+    if validate_name(first_name) or validate_name(last_name):
+        action = play_again()
+    else:
+        print(f"\n{first_name} {last_name}, all is cool, and you can continue with your validation.")
+        action = status()
+
+while True:
+    welcome_screen()
+    if not play_again():
+        break
