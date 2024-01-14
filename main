@@ -1,6 +1,5 @@
 #Dev_@ladinh production
-import random
-import os
+#Simple hook-up platform
 
 def play_again():
     answer = input("\nDo you want to run the game again? (yes or no): ").lower()
