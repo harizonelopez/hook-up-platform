@@ -1,5 +1,5 @@
-#Dev_@ladinh production
-#Simple hook-up platform
+# Dev_@ladinh production
+# hook-up platform -v2
 
 def get_user_input(prompt, validation_function=None, error_message="Invalid input. Try again."):
     while True:
@@ -13,9 +13,9 @@ def get_user_input(prompt, validation_function=None, error_message="Invalid inpu
         return user_input
 
 def validate_name(name):
-    forbidden_names = ["dan", "den", "mike", "shantel", "sharon", "shiro", "vee", "hary", "mish", "vayo", "pamela",
-                       "kevo", "brayo", "kevin", "brian", "stanley", "stano", "irene", "godfrey", "gladys", "ben",
-                       "jane", "janet", "jux"]
+    forbidden_names = ["nelson", "elias", "frank", "shaz", "sharon", "shiro", "vee", "bendenson", "mish", "vayo", "pamela",
+                       "kevo", "brayo", "kevin", "brian", "stanley", "stano", "said", "solomon", "gladys", "ben",
+                       "jane", "janet", "jux", "clinton", "rodgers", "mercy"]
     return name not in forbidden_names
 
 def validate_number(number):
@@ -28,7 +28,20 @@ def welcome_screen():
     first_name = get_user_input("Enter your first name: ", validation_function=validate_name)
     last_name = get_user_input("Enter your last name: ", validation_function=validate_name)
 
-    print(f"\n{first_name} {last_name}, such a nice name. Let's continue with your validation.")
+    print(f"\n{first_name} {last_name}, such a nice name. Let's continue with the validation.")
+    age_qualify()
+    
+def age_qualify():
+    age_input = int(get_user_input("\nWhat's your age? (in years): ",
+                               validation_function=validate_number,
+                               error_message="Please enter a valid number for the duration."))
+    if age_input == "":
+        print("Please enter a valid number for the duration.")
+    elif age_input < 18:
+        print("You must be 18 years and above.\n")
+        play_again()
+    else:
+        print("You are right to go.")
     status()
 
 def status():
@@ -58,7 +71,7 @@ def handle_male_single(duration):
     if duration <= 1:
         handle_heartbroken()
     elif duration <= 3:
-        print("\nCongrats for staying single for that long. It seems things didn't go as expected.")
+        print("\nCongrats for staying solo for that long time. It seems things didn't go as expected.")
     else:
         print("\nI'm sorry, it seems you're having difficulty healing from your previous relationship.")
 
@@ -68,7 +81,7 @@ def handle_female_single(duration):
     if duration <= 1:
         handle_heartbroken()
     elif duration <= 3:
-        print("\nThat's amazing! Being single for that long is not easy.")
+        print("\nThat's amazing! Being single for that long is not easy as a woman. I understand you lady")
     else:
         print("\nDon't give up! It's never too late.")
 
@@ -76,17 +89,17 @@ def handle_female_single(duration):
 
 def handle_heartbroken():
     reason = input("\nOops! Sorry to hear that. What was the core cause of your break-up? -> ")
-    print(f"\nThat was tough. All will be fine. Remember, we don't force relationships.")
+    print(f"\nThat was tough but have hopes that all will be fine soon. \nRemember, we men we don't force things, we leave them to happen the way they are.")
 
     kids()
 
 def married():
     gender = get_user_input("\nWhat is your gender? {male or female}: ",
                             validation_function=lambda x: x in ["male", "female"],
-                            error_message="Invalid gender. Please enter 'male' or 'female'.")
+                            error_message="Invalid gender entry. Please enter 'male' or 'female'.")
 
     if gender == "female":
-        print("\nYou are not needed here. May you find light.")
+        print("\nYou are not needed here. May you find light.\n")
     elif gender == "male":
         print("\nYou are free to go. You have been permitted by GOD.")
         kids()
@@ -96,33 +109,36 @@ def married():
 def kids():
     kids_number = get_user_input("\nHow many kids do you have?: ",
                                  validation_function=validate_number,
-                                 error_message="Please enter a valid number for the kids.")
+                                 error_message="Please enter a valid number for the kid(s) number.")
 
     if int(kids_number) == 0:
-        print("\nAll is cool. That's a good start. I hope all will be fine.")
+        print("\nAll is cool. That's a good start. I hope all will be cool.")
         car_ownership()
     elif int(kids_number) == 1:
         handle_single_child()
     else:
         boys = get_user_input("\nHow many male kids do you have?: ",
                               validation_function=validate_number,
-                              error_message="Please enter a valid number for the male kids.")
+                              error_message="Please enter a valid number for the male kid(s).")
         girls = get_user_input("\nHow many female kids do you have?: ",
                                validation_function=validate_number,
-                               error_message="Please enter a valid number for the female kids.")
-        print(f"\nHurray!! {boys} boys and {girls} girls. That's a great achievement in life.")
+                               error_message="Please enter a valid number for the female kid(s).")
+        print(f"\nWOW!! {boys} boys and {girls} girls. That's a great achievement and accomplishment in life.")
         car_ownership()
 
 def handle_single_child():
-    gender = get_user_input("\nWhat is the gender? {male or female}: ",
+    gender = get_user_input("\nWhat's the kid's gender? {male or female}: ",
                             validation_function=lambda x: x in ["male", "female"],
                             error_message="Invalid gender. Please enter 'male' or 'female'.")
     kid_name = get_user_input("\nWhat's the name of your child?: ", validation_function=lambda x: len(x) > 0)
 
-    if kid_name.lower() in ["kevo", "brayo", "dax", "mark", "stano", "samson", "mercy", "lucy", "vee", "sharon", "shee", "susan"]:
-        print(f"\nOops!! {kid_name} seems to be a popular name. Take caution with your child.")
+    forbiden_kid_name = ["nelson", "elias", "frank", "shaz", "sharon", "shiro", "vee", "bendenson", "mish", "vayo", "pamela",
+                       "kevo", "brayo", "kevin", "brian", "stanley", "stano", "said", "solomon", "gladys", "ben",
+                       "jane", "janet", "jux"]
+    if kid_name.lower() in forbiden_kid_name:
+        print(f"\nOops!! {kid_name} seems to be a popular player name. Take caution with your child.")
     else:
-        print(f"\nOh!! {kid_name} is a nice name. I wish them the best in life.")
+        print(f"\nOh!! {kid_name}, such a nice name. I wish the best in life for him/her.")
 
     car_ownership()
 
@@ -131,7 +147,7 @@ def car_ownership():
                                           validation_function=lambda x: x in ["yes", "no"],
                                           error_message="Invalid input. Please enter 'yes' or 'no'.")
     if car_ownership_input == "yes":
-        print("\nThat's awesome! Wish you the best.")
+        print("\nThat's awesome for your hardwork fellow citizen.")
         house_ownership()
     elif car_ownership_input == "no":
         print("\nIt's cool. Hope you'll own one in the future.")
@@ -142,10 +158,10 @@ def house_ownership():
                                             validation_function=lambda x: x in ["yes", "no"],
                                             error_message="Invalid input. Please enter 'yes' or 'no'.")
     if house_ownership_input == "yes":
-        print("\nThat's amazing! A house is a basic need. Big up!")
+        print("\nThat's amazing! Having a house is an essential basic need one need to have. Big up!")
         net_worth()
     elif house_ownership_input == "no":
-        print("\nIt's cool. I'm sure owning a house is in your future plans.")
+        print("\nIt's cool. I'm sure owning yours is in your future plans this year.")
         net_worth()
 
 def net_worth():
@@ -159,9 +175,9 @@ def net_worth():
     elif net_worth_value <= 10000:
         print("\nThat's shocking. You need to focus on making more money.")
     elif net_worth_value <= 50000:
-        print("\nYou are behind. This net worth can only cater for a date without enjoying luxury.")
+        print("\nYou are behind. This net worth can only cater for a date without enjoying it's luxury.")
     elif net_worth_value <= 100000:
-        print("\nIt seems you can do better. Keep focusing to make more. Cheers!")
+        print("\nIt seems you can do better. Keep focusing to make more money. Cheers!")
     elif net_worth_value > 100000:
         print("\nCongrats! You deserve an applause. We can be business associates. Remember to keep assets higher than liabilities.")
     else:
@@ -170,12 +186,12 @@ def net_worth():
     user_agreement()
 
 def user_agreement():
-    print("\n**User Agreements and Legal Terms**")
-    user_answer = get_user_input("Do you agree with the user legal laws and agreements? {yes or no}: ",
+    print("\n**User Agreement and Legal Terms and Conditions**")
+    user_answer = get_user_input("Do you agree with the user legal terms and conditions? {yes or no}: ",
                                   validation_function=lambda x: x in ["yes", "no"],
                                   error_message="Invalid input. Please enter 'yes' or 'no'.")
     if user_answer == "yes":
-        print("\nIt was a pleasure being with you. Welcome next time to my simple hook-up programme.")
+        print("\nIt was a pleasure getting to know you. \nWelcome next time to the relationship validator program.\n")
     elif user_answer == "no":
         print("\n!!ERROR!! You have to agree with the user agreement terms and conditions.")
     else:
@@ -184,13 +200,11 @@ def user_agreement():
     play_again()
 
 def play_again():
-    user_input = get_user_input("\nDo you wish to run the program logic again? {yes or no}: ",
+    user_input = get_user_input("\nDo you wish to run the program again? {yes or no}: ",
                                  validation_function=lambda x: x in ["yes", "no"],
                                  error_message="Invalid input. Please enter 'yes' or 'no'.")
     if user_input == "yes":
         welcome_screen()
     else:
-        print("\nCool! You are welcomed again next time. Hope you enjoyed navigating through the program. :)")
-        quit()
-
+        print("\nCool! You are welcomed again next time. Hope you enjoyed navigating through the program. :)\n")
 welcome_screen()
