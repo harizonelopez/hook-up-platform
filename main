@@ -1,5 +1,5 @@
 # Dev_@ladinh production
-# hook-up platform -v2
+# hook-up platform -v2, It which mainly involves one to enter his/her details for the program to validate if fit for a new relationship or to quit dating
 
 def get_user_input(prompt, validation_function=None, error_message="Invalid input. Try again."):
     while True:
@@ -13,7 +13,7 @@ def get_user_input(prompt, validation_function=None, error_message="Invalid inpu
         return user_input
 
 def validate_name(name):
-    forbidden_names = ["nelson", "elias", "frank", "shaz", "sharon", "shiro", "vee", "bendenson", "mish", "vayo", "pamela",
+    forbidden_names = ["nelson", "frank", "shaz", "sharon", "shiro", "bendenson", "mish", "vayo", "pamela",
                        "kevo", "brayo", "kevin", "brian", "stanley", "stano", "said", "solomon", "gladys", "ben",
                        "jane", "janet", "jux", "clinton", "rodgers", "mercy"]
     return name not in forbidden_names
@@ -22,13 +22,13 @@ def validate_number(number):
     return number.isdigit() and int(number) >= 0
 
 def welcome_screen():
-    print("\n***Welcome To The Relationship Validator Programme***")
-    print("        Enjoy yourself and make yourself cool\n")
+    print("\n***Welcome To The Relationship Validator Program***")
+    print("        Enjoy yourself and make yourself cool as you go through the app logic\n")
 
     first_name = get_user_input("Enter your first name: ", validation_function=validate_name)
     last_name = get_user_input("Enter your last name: ", validation_function=validate_name)
 
-    print(f"\n{first_name} {last_name}, such a nice name. Let's continue with the validation.")
+    print(f"\n{first_name} {last_name}, such a nice and cool name. Let's continue with the validation pall!")
     age_qualify()
     
 def age_qualify():
