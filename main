@@ -1,5 +1,5 @@
 # Dev_@ladinh production
-# hook-up platform -v2, It which mainly involves one to enter his/her details for the program to validate if fit for a new relationship or to quit dating
+# hook-up platform -version 2, It which mainly involves one to enter his/her details for the program to validate if fit for a new relationship or to quit dating
 
 def get_user_input(prompt, validation_function=None, error_message="Invalid input. Try again."):
     while True:
